@@ -178,8 +178,7 @@ option28 = st.selectbox(
 )
 
 if st.button('Avaliar perfil'):
-    #model = pickle.load(open('data.sav', 'rb'))
-    
+    model = pickle.load(open('data.sav', 'rb'))    
     x = st.write('O perfil avaliado pertence ao grupo: ')
 
 
