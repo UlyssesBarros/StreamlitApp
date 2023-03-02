@@ -3,298 +3,218 @@ import pickle
 import catboost as cat
 
 
+aux0 = ("Centro-Oeste", "Nordeste", "Norte", "Sudeste", "Sul")
 option0 = st.selectbox(
     "Selecione a região da IES:",
-    ("Centro-Oeste", "Nordeste", "Norte", "Sudeste", "Sul"),
-    label_visibility="visible"    
+    range(len(aux0)),
+    format_func=lambda x: aux0[x]    
 )
 
+aux1 = ("Feminino", "Masculino")
 option1 = st.selectbox(
-    "Gênero do estudante:",
-    ("Feminino", "Masculino"),
-    label_visibility="visible"    
+    "Gênero do estudante:",    
+    range(len(aux1)),
+    format_func=lambda x: aux1[x]   
 )
 
+aux2 = ('Amarela', 'Branca', 'Indígena', 'Não quero declarar', 'Parda', 'Preta')
 option2 = st.selectbox(
-    "Cor/raça:",
-    ('Amarela', 'Branca', 'Indígena', 'Não quero declarar', 'Parda', 'Preta'),
-    label_visibility="visible"    
+    "Cor/raça:",    
+    range(len(aux2)),
+    format_func=lambda x: aux2[x]   
 )
 
+aux3 = ('Casado(a)', 'Outro', 'Separado(a) judicialmente/divorciado(a)', 'Solteiro(a)', 'Viúvo(a)')
 option3 = st.selectbox(
-    "Estado civil:",
-    ('Casado(a)', 'Outro', 'Separado(a) judicialmente/divorciado(a)', 'Solteiro(a)', 'Viúvo(a)'),
-    label_visibility="visible"    
+    "Estado civil:",    
+    range(len(aux3)),
+    format_func=lambda x: aux3[x]   
 )
 
+aux4 = ('Acima de 30 salários mínimos (mais de R$ 28.620,00)', 'Até 1,5 salário mínimo (até R$ 1.431,00)', 'De 1,5 a 3 salários mínimos (R$ 1.431,01 a R$ 2.862,00)', 'De 10 a 30 salários mínimos (R$ 9.540,01 a R$ 28.620,00)', 'De 3 a 4,5 salários mínimos (R$ 2.862,01 a R$ 4.293,00)', 'De 4,5 a 6 salários mínimos (R$ 4.293,01 a R$ 5.724,00)', 'De 6 a 10 salários mínimos (R$ 5.724,01 a R$ 9.540,00)')
 option4 = st.selectbox(
-    "Renda familiar:",
-    ('Acima de 30 salários mínimos (mais de R$ 28.620,00)', 'Até 1,5 salário mínimo (até R$ 1.431,00)', 'De 1,5 a 3 salários mínimos (R$ 1.431,01 a R$ 2.862,00)', 'De 10 a 30 salários mínimos (R$ 9.540,01 a R$ 28.620,00)', 'De 3 a 4,5 salários mínimos (R$ 2.862,01 a R$ 4.293,00)', 'De 4,5 a 6 salários mínimos (R$ 4.293,01 a R$ 5.724,00)', 'De 6 a 10 salários mínimos (R$ 5.724,01 a R$ 9.540,00)'),
-    label_visibility="visible"    
+    "Renda familiar:",    
+    range(len(aux4)),
+    format_func=lambda x: aux4[x]    
 )
 
+aux5 = ('Ensino fundamental', 'Ensino médio', 'Ensino superior', 'Nenhuma')
 option5 = st.selectbox(
-    "Escolaridade Pai:",
-    ('Ensino fundamental', 'Ensino médio', 'Ensino superior', 'Nenhuma'),
-    label_visibility="visible"    
+    "Escolaridade Pai:",    
+    range(len(aux5)),
+    format_func=lambda x: aux5[x]    
 )
 
+aux6 = ('Ensino fundamental', 'Ensino médio', 'Ensino superior', 'Nenhuma')
 option6 = st.selectbox(
-    "Escolaridade Mãe:",
-    ('Ensino fundamental', 'Ensino médio', 'Ensino superior', 'Nenhuma'),
-    label_visibility="visible"    
+    "Escolaridade Mãe:",    
+    range(len(aux6)),
+    format_func=lambda x: aux6[x]    
 )
 
+aux7 = ('Em alojamento universitário da própria instituição', 'Em casa ou apartamento, com cônjuge e/ou filhos', 'Em casa ou apartamento, com pais e/ou parentes', 'Em casa ou apartamento, sozinho', 'Em casa, apartamento ou em outros tipos de habitação coletiva, com outras pessoas')
 option7 = st.selectbox(
-    "Companhia Residência:",
-    ('Em alojamento universitário da própria instituição', 'Em casa ou apartamento, com cônjuge e/ou filhos', 'Em casa ou apartamento, com pais e/ou parentes', 'Em casa ou apartamento, sozinho', 'Em casa, apartamento ou em outros tipos de habitação coletiva, com outras pessoas'),
-    label_visibility="visible"    
+    "Companhia Residência:",    
+    range(len(aux7)),
+    format_func=lambda x: aux7[x]    
 )
 
+aux8 = ('Todo ou a maior parte em escola privada', 'Todo ou a maior parte em escola pública', 'Todo ou parte no exterior')
 option8 = st.selectbox(
-    "Tipo escola ensino médio:",
-    ('Todo ou a maior parte em escola privada', 'Todo ou a maior parte em escola pública', 'Todo ou parte no exterior'),
-    label_visibility="visible"    
+    "Tipo escola ensino médio:",    
+    range(len(aux8)),
+    format_func=lambda x: aux8[x]    
 )
 
+aux9 = ('Educação de Jovens e Adultos (EJA) e/ou Supletivo', 'Ensino médio tradicional', 'Outra modalidade', 'Profissionalizante magistério (Curso Normal)', 'Profissionalizante técnico (eletrônica, contabilidade, agrícola, outro)')
 option9 = st.selectbox(
-    "Modalidade ensino médio:",
-    ('Educação de Jovens e Adultos (EJA) e/ou Supletivo', 'Ensino médio tradicional', 'Outra modalidade', 'Profissionalizante magistério (Curso Normal)', 'Profissionalizante técnico (eletrônica, contabilidade, agrícola, outro)'),
-    label_visibility="visible"    
+    "Modalidade ensino médio:",    
+    range(len(aux9)),
+    format_func=lambda x: aux9[x]    
 )
 
+aux10 = ('Estadual', 'Federal')
 option10 = st.selectbox(
-    "Categoria administrativa da IES:",
-    ('Estadual', 'Federal'),
-    label_visibility="visible"    
+    "Categoria administrativa da IES:",    
+    range(len(aux10)),
+    format_func=lambda x: aux10[x]   
 )
 
+aux11 = ('Concordo', 'Discordo', 'Discordo/concordo parcialmente', 'Não se aplica', 'Não sei responder')
 option11 = st.selectbox(
-    "Infraestrutura geral da IES:",
-    ('Concordo', 'Discordo', 'Discordo/concordo parcialmente', 'Não se aplica', 'Não sei responder'),
-    label_visibility="visible"    
+    "Infraestrutura geral da IES:",    
+    range(len(aux11)),
+    format_func=lambda x: aux11[x]    
 )
 
+aux12 = ('Concordo', 'Discordo', 'Discordo/concordo parcialmente', 'Não se aplica', 'Não sei responder')
 option12 = st.selectbox(
-    "Biblioteca Virtual da IES:",
-    ('Concordo', 'Discordo', 'Discordo/concordo parcialmente', 'Não se aplica', 'Não sei responder'),
-    label_visibility="visible"    
+    "Biblioteca Virtual da IES:",    
+    range(len(aux12)),
+    format_func=lambda x: aux12[x]   
 )
 
+aux13 = ('Concordo', 'Discordo', 'Discordo/concordo parcialmente', 'Não se aplica', 'Não sei responder')
 option13 = st.selectbox(
-    "Biblioteca física da IES:",
-    ('Concordo', 'Discordo', 'Discordo/concordo parcialmente', 'Não se aplica', 'Não sei responder'),
-    label_visibility="visible"    
+    "Biblioteca física da IES:",    
+    range(len(aux13)),
+    format_func=lambda x: aux13[x]    
 )
 
+aux14 = ('Integral', 'Matutino', 'Noturno', 'Vespertino')
 option14 = st.selectbox(
-    "Turno graduação:",
-    ('Integral', 'Matutino', 'Noturno', 'Vespertino'),
-    label_visibility="visible"    
+    "Turno graduação:",    
+    range(len(aux14)),
+    format_func=lambda x: aux14[x]    
 )
 
+aux15 = ('Não', 'Sim')
 option15 = st.selectbox(
-    "Ação afirmativa:",
-    ('Não', 'Sim'),
-    label_visibility="visible"    
+    "Ação afirmativa:",    
+    range(len(aux15)),
+    format_func=lambda x: aux15[x]    
 )
 
+aux16 = ('Não', 'Sim')
 option16 = st.selectbox(
-    "Bolsa acadêmica:",
-    ('Não', 'Sim'),
-    label_visibility="visible"    
+    "Bolsa acadêmica:",    
+    range(len(aux16)),
+    format_func=lambda x: aux16[x]   
 )
 
+aux17 = ('Não', 'Sim')
 option17 = st.selectbox(
-    "Auxílio permanência:",
-    ('Não', 'Sim'),
-    label_visibility="visible"    
+    "Auxílio permanência:",    
+    range(len(aux17)),
+    format_func=lambda x: aux17[x]   
 )
 
+aux18 = ('Não', 'Sim')
 option18 = st.selectbox(
-    "Incentivo graduação:",
-    ('Não', 'Sim'),
-    label_visibility="visible"    
+    "Incentivo graduação:",    
+    range(len(aux18)),
+    format_func=lambda x: aux18[x]    
 )
 
+aux19 = ('Não', 'Sim')
 option19 = st.selectbox(
-    "Graduação família:",
-    ('Não', 'Sim'),
-    label_visibility="visible"    
+    "Graduação família:",    
+    range(len(aux19)),
+    format_func=lambda x: aux19[x]    
 )
 
+aux20 = ('Não', 'Sim')
 option20 = st.selectbox(
-    "Oferta apoio geral:",
-    ('Não', 'Sim'),
-    label_visibility="visible"    
+    "Oferta apoio geral:",    
+    range(len(aux20)),
+    format_func=lambda x: aux20[x]    
 )
 
+aux21 = ('Não', 'Sim')
 option21 = st.selectbox(
-    "Situação trabalho:",
-    ('Não', 'Sim'),
-    label_visibility="visible"    
+    "Situação trabalho:",    
+    range(len(aux21)),
+    format_func=lambda x: aux21[x]    
 )
 
+aux22 = ('Não tenho renda e meus gastos são financiados pela família, por outras pessoas e/ou por programas governamentais', 'Tenho renda e contribuo para o sustento da família', 'Tenho renda e não preciso de ajuda para financiar meus gastos', 'Tenho renda, mas recebo ajuda da família ou de outras pessoas para financiar meus gastos')
 option22 = st.selectbox(
-    "Situação financeira:",
-    ('Não tenho renda e meus gastos são financiados pela família, por outras pessoas e/ou por programas governamentais', 'Tenho renda e contribuo para o sustento da família', 'Tenho renda e não preciso de ajuda para financiar meus gastos', 'Tenho renda, mas recebo ajuda da família ou de outras pessoas para financiar meus gastos'),
-    label_visibility="visible"    
+    "Situação financeira:",    
+    range(len(aux22)),
+    format_func=lambda x: aux22[x]    
 )
 
+aux23 = ('De oito a doze', 'De quatro a sete', 'De uma a três', 'Mais de doze', 'Nenhuma, apenas assisto às aulas')
 option23 = st.selectbox(
     "Dedicação semanal:",
-    ('De oito a doze', 'De quatro a sete', 'De uma a três', 'Mais de doze', 'Nenhuma, apenas assisto às aulas'),
-    label_visibility="visible"    
+    range(len(aux23)),
+    format_func=lambda x: aux23[x]   
 )
 
+aux24 = ('Bacharelado', 'Licenciatura')
 option24 = st.selectbox(
     "Grau acadêmico curso:",
-    ('Bacharelado', 'Licenciatura'),
-    label_visibility="visible"    
+    range(len(aux24)),
+    format_func=lambda x: aux24[x]    
 )
 
+aux25 = ('Centro-Oeste', 'Nordeste', 'Norte', 'Não se aplica', 'Sudeste', 'Sul')
 option25 = st.selectbox(
     "Região escola ensino médio:",
-    ('Centro-Oeste', 'Nordeste', 'Norte', 'Não se aplica', 'Sudeste', 'Sul'),
-    label_visibility="visible"    
+    range(len(aux25)),
+    format_func=lambda x: aux25[x]    
 )
 
+aux26 = ('Agricultura, silvicultura, pesca e veterinária', 'Artes e humanidades', 'Ciências naturais, matemática e estatí\xadstica', 'Ciências sociais, jornalismo e informação', 'Computação e Tecnologias da Informação e Comunicação (TIC)', 'Educação', 'Engenharia, produção e construção', 'Negócios, administração e direito', 'Saúde e bem-estar', 'Serviços')
 option26 = st.selectbox(
     "Grande área curso:",
-    ('Agricultura, silvicultura, pesca e veterinária', 'Artes e humanidades', 'Ciências naturais, matemática e estatí\xadstica', 'Ciências sociais, jornalismo e informação', 'Computação e Tecnologias da Informação e Comunicação (TIC)', 'Educação', 'Engenharia, produção e construção', 'Negócios, administração e direito', 'Saúde e bem-estar', 'Serviços'),
-    label_visibility="visible"    
+    range(len(aux26)),
+    format_func=lambda x: aux26[x]   
 )
 
+aux27 = ('10 anos ou mais', '2 anos ou menos', 'Entre 3 e 5 anos', 'Entre 6 e 9 anos')
 option27 = st.selectbox(
-    "Diferença inicio graduação fim ensino médio:",
-    ('10 anos ou mais', '2 anos ou menos', 'Entre 3 e 5 anos', 'Entre 6 e 9 anos'),
-    label_visibility="visible"    
+    "Diferença entre inicio da graduação e fim do ensino médio:",
+    range(len(aux27)),
+    format_func=lambda x: aux27[x]    
 )
 
+aux28 = ('60 anos ou mais', 'Entre 18 e 24 anos', 'Entre 25 e 39 anos', 'Entre 40 e 59 anos')
 option28 = st.selectbox(
     "Faixa etária:",
-    ('60 anos ou mais', 'Entre 18 e 24 anos', 'Entre 25 e 39 anos', 'Entre 40 e 59 anos'),
-    label_visibility="visible"    
+    range(len(aux28)),
+    format_func=lambda x: aux28[x]
 )
 
 if st.button('Avaliar perfil'):
+    predList = []
+    for i in range(29):        
+        auxList = [0] * len(globals()['aux' + str(i)])
+        position = globals()['option' + str(i)]
+        auxList[position] = 1
+        predList.extend(auxList)
     model = pickle.load(open('data.sav', 'rb'))
-    y = model.predict([0.0,
- 0.0,
- 0.0,
- 1.0,
- 0.0,
- 1.0,
- 0.0,
- 0.0,
- 0.0,
- 0.0,
- 0.0,
- 0.0,
- 1.0,
- 0.0,
- 0.0,
- 0.0,
- 1.0,
- 0.0,
- 0.0,
- 0.0,
- 0.0,
- 0.0,
- 1.0,
- 0.0,
- 0.0,
- 1.0,
- 0.0,
- 0.0,
- 0.0,
- 1.0,
- 0.0,
- 0.0,
- 0.0,
- 0.0,
- 0.0,
- 0.0,
- 1.0,
- 0.0,
- 1.0,
- 0.0,
- 0.0,
- 0.0,
- 1.0,
- 0.0,
- 0.0,
- 0.0,
- 1.0,
- 0.0,
- 0.0,
- 0.0,
- 1.0,
- 0.0,
- 0.0,
- 1.0,
- 0.0,
- 0.0,
- 0.0,
- 0.0,
- 1.0,
- 0.0,
- 0.0,
- 0.0,
- 0.0,
- 1.0,
- 0.0,
- 0.0,
- 0.0,
- 1.0,
- 0.0,
- 0.0,
- 1.0,
- 0.0,
- 1.0,
- 1.0,
- 0.0,
- 0.0,
- 1.0,
- 0.0,
- 1.0,
- 1.0,
- 0.0,
- 1.0,
- 0.0,
- 0.0,
- 0.0,
- 0.0,
- 0.0,
- 1.0,
- 0.0,
- 0.0,
- 1.0,
- 0.0,
- 0.0,
- 0.0,
- 0.0,
- 0.0,
- 1.0,
- 0.0,
- 0.0,
- 0.0,
- 0.0,
- 0.0,
- 0.0,
- 0.0,
- 0.0,
- 0.0,
- 1.0,
- 0.0,
- 0.0,
- 0.0,
- 1.0,
- 0.0,
- 0.0,
- 0.0,
- 1.0,
- 0.0])
+    y = model.predict(predList)
     x = st.write('O perfil avaliado pertence ao grupo: ' + y)
 
 
