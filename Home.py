@@ -296,7 +296,7 @@ with tab2:
     st.write(fig)
 
     st.header('Tempo de Graduação x Faixa Etária')
-    faixa_etariaR = df.groupby(["FAIXA_ETARIA","TEMPO_GRADUACAO_1"], as_index=False)["SEXO"].count().replace(regex=['FAIXA_ETARIA: ', 'TEMPO_GRADUACAO: '],value= '')
+    faixa_etariaR = df.groupby(["FAIXA_ETARIA","TEMPO_GRADUACAO_2"], as_index=False)["SEXO"].count().replace(regex=['FAIXA_ETARIA: ', 'TEMPO_GRADUACAO: '],value= '')
     #st.bar_chart(faixa_etaria)
     import plotly.express as px     
     fig=px.bar(faixa_etariaR, x = 'SEXO', y = 'FAIXA_ETARIA', color='TEMPO_GRADUACAO_2', labels={'SEXO':'QTD Alunos', 'FAIXA_ETARIA': 'Faixa etária', "TEMPO_GRADUACAO_2": 'TEMPO GRADUAÇÃO'}, barmode = 'group')
