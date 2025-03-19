@@ -243,11 +243,11 @@ with tab1:
             predList.extend(auxList)
         model = pickle.load(open( dir_path + "/data-15.sav", "rb"))
         y = model.predict(predList)
-        x = st.write('O perfil avaliado pertence ao grupo: ' + ('Entre 2 e 4 anos'
-                     if(y == 'TEMPO_GRADUACAO: Entre 2 e 4 anos')
+        x = st.write('O perfil avaliado pertence ao grupo: ' + ('Entre 2 e 7 anos'
+                     if(y == 'TEMPO_GRADUACAO: Entre 2 e 7 anos')
                          
                      else
-                         '5 anos ou mais'
+                         '8 anos ou mais'
                     ))
 
 with tab2:
@@ -262,7 +262,9 @@ with tab2:
         st.image(image2, caption="Matriz de correlação.")
     
 
-    df =  pd.read_parquet( dir_path + "/dataset.parquet.gzip", engine='auto')
+    df =  pd.read_parquet( dir_path + "/tt.parquet", engine='auto')
+
+    print(df) 
 
     regioes = ["Centro-Oeste", "Nordeste", "Norte", "Sudeste", "Sul"]
     faixa_etaria = ['Entre 18 e 24 anos', 'Entre 25 e 39 anos', 'Entre 40 e 59 anos', '60 anos ou mais']
@@ -315,5 +317,4 @@ with tab3:
     components.html(source_code, height=600, scrolling=True)
 
     
-
 
