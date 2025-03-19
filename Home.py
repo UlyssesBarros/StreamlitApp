@@ -262,7 +262,7 @@ with tab2:
         st.image(image2, caption="Matriz de correlação.")
     
 
-    df =  pd.read_parquet( dir_path + "/dataset.parquet", engine='auto')
+    df =  pd.read_parquet( dir_path + "/dataset.gzip", engine='auto')
 
     regioes = ["Centro-Oeste", "Nordeste", "Norte", "Sudeste", "Sul"]
     faixa_etaria = ['Entre 18 e 24 anos', 'Entre 25 e 39 anos', 'Entre 40 e 59 anos', '60 anos ou mais']
