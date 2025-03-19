@@ -243,11 +243,11 @@ with tab1:
             predList.extend(auxList)
         model = pickle.load(open( dir_path + "/data-15.sav", "rb"))
         y = model.predict(predList)
-        x = st.write('O perfil avaliado pertence ao grupo: ' + ('Entre 2 e 7 anos'
-                     if(y == 'TEMPO_GRADUACAO: Entre 2 e 7 anos')
+        x = st.write('O perfil avaliado pertence ao grupo: ' + ('Entre 2 e 4 anos'
+                     if(y == 'TEMPO_GRADUACAO: Entre 2 e 4 anos')
                          
                      else
-                         '8 anos ou mais'
+                         '5 anos ou mais'
                     ))
 
 with tab2:
