@@ -266,7 +266,7 @@ with tab2:
 
     regioes = ["Centro-Oeste", "Nordeste", "Norte", "Sudeste", "Sul"]
     faixa_etaria = ['Entre 18 e 24 anos', 'Entre 25 e 39 anos', 'Entre 40 e 59 anos', '60 anos ou mais']
-    tempo_grad = ['Entre 2 e 7 anos', '8 anos ou mais']
+    tempo_grad = ['Entre 2 e 4 anos', '5 anos ou mais']
 
     
     with st.expander("Filtros"):
