@@ -275,7 +275,7 @@ with tab2:
         sort_values3 = st.multiselect('Tempo de Graduação', options= tempo_grad, default= tempo_grad[0])
 
 
-    df = df.query("REGIAO_IES in (@sort_values) & FAIXA_ETARIA in (@sort_values2) & TEMPO_GRADUACAO_1 in (@sort_values3)")
+    df = df.query("REGIAO_IES in (@sort_values) & FAIXA_ETARIA in (@sort_values2) & TEMPO_GRADUACAO_2 in (@sort_values3)")
 
     st.header('Alunos por Faixa Etária')
     faixa_etaria = df['FAIXA_ETARIA'].replace(regex=['FAIXA_ETARIA: '],value= '').value_counts()
@@ -299,7 +299,7 @@ with tab2:
     faixa_etariaR = df.groupby(["FAIXA_ETARIA","TEMPO_GRADUACAO_1"], as_index=False)["SEXO"].count().replace(regex=['FAIXA_ETARIA: ', 'TEMPO_GRADUACAO: '],value= '')
     #st.bar_chart(faixa_etaria)
     import plotly.express as px     
-    fig=px.bar(faixa_etariaR, x = 'SEXO', y = 'FAIXA_ETARIA', color='TEMPO_GRADUACAO_1', labels={'SEXO':'QTD Alunos', 'FAIXA_ETARIA': 'Faixa etária', "TEMPO_GRADUACAO_1": 'TEMPO GRADUAÇÃO'}, barmode = 'group')
+    fig=px.bar(faixa_etariaR, x = 'SEXO', y = 'FAIXA_ETARIA', color='TEMPO_GRADUACAO_2', labels={'SEXO':'QTD Alunos', 'FAIXA_ETARIA': 'Faixa etária', "TEMPO_GRADUACAO_2": 'TEMPO GRADUAÇÃO'}, barmode = 'group')
     st.write(fig)
 
 
